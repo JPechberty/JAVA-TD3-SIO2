@@ -1,0 +1,7 @@
+services:
+  clients-api:
+    container_name: clients-api
+    image: nours313/mock-clients-api:latest
+    ports:
+      - "8080:8080"
+    restart: always
