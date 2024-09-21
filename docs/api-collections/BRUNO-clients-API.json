@@ -1,0 +1,200 @@
+{
+  "name": "Mock clients API",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Check Status",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8080/api/v1/status",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Create client",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8080/api/v1/client",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"siret\":\"12345678900012\",\n  \"raison_sociale\":\"NOURS SARL\",\n  \"adresse\":\"45 rue du test\",\n  \"code_postal\":\"94700\",\n  \"ville\":\"MAISONS ALFORT\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Delete Client",
+      "seq": 8,
+      "request": {
+        "url": "http://localhost:8080/api/v1/client/:siret",
+        "method": "DELETE",
+        "headers": [],
+        "params": [
+          {
+            "name": "siret",
+            "value": "12345678900012",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Init Data",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8080/api/v1/init-data",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "List clients",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8080/api/v1/clients",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Show detail Client",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8080/api/v1/client/:siret",
+        "method": "GET",
+        "headers": [],
+        "params": [
+          {
+            "name": "siret",
+            "value": "12345678900012",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Update Client",
+      "seq": 7,
+      "request": {
+        "url": "http://localhost:8080/api/v1/client/:siret",
+        "method": "PUT",
+        "headers": [],
+        "params": [
+          {
+            "name": "siret",
+            "value": "12345678900012",
+            "type": "path",
+            "enabled": true
+          }
+        ],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"raison_sociale\":\"NOURS SARL\",\n  \"adresse\":\"45 rue du test\",\n  \"code_postal\":\"94700\",\n  \"ville\":\"MAISONS ALFORT\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Mock clients API",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
