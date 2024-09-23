@@ -1,5 +1,7 @@
 package com.sio.javatd3sio2;
 
+import com.sio.javatd3sio2.models.Client;
+import com.sio.javatd3sio2.services.ClientService;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -18,8 +20,16 @@ public class ShowClientController {
     @FXML
     private TextField inputVille;
 
-    public void init() {
+    public void init(String siret) {
         System.out.println("Show Client initialized");
+        ClientService service = new ClientService();
+        Client client = service.find(siret);
+
+        inputSiret.setText(client.getSiret());
+        inputRaisonSociale.setText(client.getRaisonSociale());
+        inputAdresse.setText(client.getAdresse());
+        inputCodePostal.setText(client.getCodePostal());
+        inputVille.setText(client.getVille());
     }
 
     @FXML
