@@ -20,4 +20,19 @@ public class ClientService implements MockClientsApiInterface<Client,String> {
         return client.getClients();
     }
 
+    @Override
+    public boolean create(Client c) {
+        return client.createClient(c);
+    }
+
+    @Override
+    public boolean update(Client c) {
+        return client.updateClient(c);
+    }
+
+    @Override
+    public boolean delete(Client c) {
+        return client.deleteClient(c);
+    }
+
 }

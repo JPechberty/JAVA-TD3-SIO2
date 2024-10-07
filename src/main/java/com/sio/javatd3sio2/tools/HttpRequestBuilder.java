@@ -23,24 +23,34 @@ public class HttpRequestBuilder {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-//    public static String post(String url, String data) throws URISyntaxException, IOException, InterruptedException {
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(new URI(url))
-//                .header("Content-Type", "application/json")
-//                .POST(HttpRequest.BodyPublishers.ofString("{\"key\":\"value\"}"))
-//                .build();
-//
-//        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-//    }
-//
-//    public static String put(String url, String data, String... token) throws URISyntaxException, IOException, InterruptedException {
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(new URI(url))
-//                .header("Content-Type", "application/json")
-//                .PUT(HttpRequest.BodyPublishers.ofString("{\"key\":\"value\"}"))
-//                .build();
-//
-//        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-//    }
+    public static HttpResponse<String> post(String url, String data) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(url))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(data))
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public static HttpResponse<String> put(String url, String data, String... token) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(url))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(data))
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public static HttpResponse<String> delete(String url) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(url))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
 }
 

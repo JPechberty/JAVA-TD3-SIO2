@@ -89,16 +89,33 @@ public class ClientManagerController implements Initializable {
     public void btnDeleteClientClicked() {
         //TODO : supprimer le client selectionné
         System.out.println("Supprimer client");
+
+        if(tvClients.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun client selectionné");
+            alert.setContentText("Veuillez selectionner un client");
+            alert.showAndWait();
+            return;
+        }
+
+        new ClientService().delete(tvClients.getSelectionModel().getSelectedItem());
+
+
     }
 
     @FXML
     public void btnRefreshClicked() {
-        //TODO : rafraichir la liste des clients
         System.out.println("Rafrachir");
+        grabAndDisplay();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        grabAndDisplay();
+    }
+
+    private void grabAndDisplay(){
         HashMap<String, Object> clientsMap = new ClientService().findAll();
 
         if (clientsMap == null) {

@@ -32,16 +32,6 @@ public class MockClientsApiClient {
         return null;
     }
 
-    private Client buildClientFull(JSONObject jsonItem) {
-        return new Client(
-                (String) jsonItem.get("siret"),
-                (String) jsonItem.get("raison_sociale"),
-                (String) jsonItem.get("adresse"),
-                (String) jsonItem.get("code_postal"),
-                (String) jsonItem.get("ville")
-        );
-    }
-
     public HashMap<String,Object> getClients() {
 
         HashMap<String, Object> map = new HashMap<>();
@@ -69,10 +59,85 @@ public class MockClientsApiClient {
         return null;
     }
 
+    public boolean createClient(Client c){
+        try {
+            String data = buildJsonStringFromObject(c);
+            HttpResponse<String> response = HttpRequestBuilder.post(cm.getProperty("mock.clients.api.url") + "/client",data);
+            System.out.println(response.body());
+
+            return response.statusCode() == 201;
+
+//            JSONObject jsonItem = (JSONObject) parser.parse(response.body());
+//            String message = (String) jsonItem.get("status");
+//
+//            System.out.println(jsonItem);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean updateClient(Client c){
+        try {
+            String data = buildJsonStringFromObject(c);
+            System.out.println(data);
+            HttpResponse<String> response = HttpRequestBuilder.put(cm.getProperty("mock.clients.api.url") + "/client/" + c.getSiret(),data);
+            System.out.println(response.body());
+
+            return response.statusCode() == 200;
+
+//            JSONObject jsonItem = (JSONObject) parser.parse(response.body());
+//            String message = (String) jsonItem.get("status");
+//
+//            System.out.println(jsonItem);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteClient(Client c){
+        try {
+            HttpResponse<String> response = HttpRequestBuilder.delete(cm.getProperty("mock.clients.api.url") + "/client/" + c.getSiret());
+            System.out.println(response.body());
+
+            return response.statusCode() == 200;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private Client buildClientOverview(JSONObject jsonItem) {
         return new Client(
                 (String) jsonItem.get("siret"),
                 (String) jsonItem.get("raison_sociale")
         );
+    }
+
+    private Client buildClientFull(JSONObject jsonItem) {
+        return new Client(
+                (String) jsonItem.get("siret"),
+                (String) jsonItem.get("raison_sociale"),
+                (String) jsonItem.get("adresse"),
+                (String) jsonItem.get("code_postal"),
+                (String) jsonItem.get("ville")
+        );
+    }
+
+    private String buildJsonStringFromObject(Client c){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("siret",c.getSiret());
+        jsonObject.put("raison_sociale",c.getRaisonSociale());
+        jsonObject.put("adresse",c.getAdresse());
+        jsonObject.put("code_postal",c.getCodePostal());
+        jsonObject.put("ville",c.getVille());
+
+        return jsonObject.toString();
     }
 }
